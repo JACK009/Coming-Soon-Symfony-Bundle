@@ -7,10 +7,12 @@ namespace Jack009\ComingSoonBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ComingSoonExtension extends Extension
+class ComingSoonExtension extends Extension implements PrependExtensionInterface
 {
+
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
@@ -30,5 +32,15 @@ class ComingSoonExtension extends Extension
     public function getAlias(): string
     {
         return 'coming_soon';
+    }
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        // Prepend twig template path so templates from this bundle are available
+        $container->prependExtensionConfig('twig', [
+            'paths' => [
+                __DIR__ . '/../../templates' => 'ComingSoonBundle',
+            ],
+        ]);
     }
 }

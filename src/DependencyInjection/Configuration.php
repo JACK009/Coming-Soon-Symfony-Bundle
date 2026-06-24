@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
                     ->info('Set to true to show the Coming Soon page to all visitors.')
                 ->end()
                 ->scalarNode('template')
-                    ->defaultValue('@ComingSoon/coming_soon.html.twig')
+                    ->defaultValue('@ComingSoonBundle/coming_soon.html.twig')
                     ->info('Twig template to render for the Coming Soon page.')
                 ->end()
                 ->integerNode('status_code')

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Jack009\ComingSoonBundle;
 
+use Jack009\ComingSoonBundle\DependencyInjection\ComingSoonExtension;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -16,4 +18,12 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class ComingSoonBundle extends Bundle
 {
+    public function getContainerExtension(): ?ExtensionInterface
+    {
+        if (null === $this->extension) {
+            $this->extension = new ComingSoonExtension();
+        }
+
+        return $this->extension;
+    }
 }
