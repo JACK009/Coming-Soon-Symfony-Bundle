@@ -8,5 +8,6 @@ services:
             $whitelistedIps: '%coming_soon.whitelisted_ips%'
             $excludedRoutes: '%coming_soon.excluded_routes%'
             $excludedPaths: '%coming_soon.excluded_paths%'
+            $debug: '%kernel.debug%'
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }

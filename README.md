@@ -10,6 +10,7 @@ A Symfony bundle that lets you **enable or disable a Coming Soon page** for your
 - IP whitelist – allow specific IP addresses to bypass the coming soon page
 - Excluded routes – allow specific named routes to pass through
 - Excluded paths – allow specific URL path prefixes to pass through (e.g. `/admin`)
+- Symfony Web Debug Toolbar / Profiler (`/_wdt`, `/_profiler`) is automatically allowed through when `kernel.debug` is `true`
 
 ## Installation
 

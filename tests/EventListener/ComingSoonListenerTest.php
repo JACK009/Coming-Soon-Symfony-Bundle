@@ -30,6 +30,7 @@ class ComingSoonListenerTest extends TestCase
         array $whitelistedIps = [],
         array $excludedRoutes = [],
         array $excludedPaths = [],
+        bool $debug = false,
     ): ComingSoonListener {
         return new ComingSoonListener(
             $this->twig,
@@ -39,6 +40,7 @@ class ComingSoonListenerTest extends TestCase
             $whitelistedIps,
             $excludedRoutes,
             $excludedPaths,
+            $debug,
         );
     }
 
@@ -232,6 +234,36 @@ class ComingSoonListenerTest extends TestCase
             ->method('render')
             ->with('@MyBundle/custom.html.twig', ['status_code' => 503])
             ->willReturn('<html>Custom</html>');
+
+        $listener->onKernelRequest($event);
+
+        $this->assertTrue($event->hasResponse());
+    }
+
+    public function testDebugModeAllowsProfilerPath(): void
+    {
+        $listener = $this->createListener(enabled: true, debug: true);
+
+        foreach (['/_wdt/abc123', '/_profiler', '/_profiler/search'] as $path) {
+            $request = Request::create($path);
+            $event = $this->createEvent($request);
+
+            $this->twig->expects($this->never())->method('render');
+
+            $listener->onKernelRequest($event);
+
+            $this->assertFalse($event->hasResponse(), "Path $path should be allowed in debug mode.");
+        }
+    }
+
+    public function testNonDebugModeBlocksProfilerPath(): void
+    {
+        $listener = $this->createListener(enabled: true, debug: false);
+
+        $request = Request::create('/_profiler');
+        $event = $this->createEvent($request);
+
+        $this->twig->expects($this->once())->method('render')->willReturn('<html>Coming Soon</html>');
 
         $listener->onKernelRequest($event);
 

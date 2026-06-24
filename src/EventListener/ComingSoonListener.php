@@ -15,6 +15,8 @@ use Twig\Environment;
  */
 class ComingSoonListener
 {
+    private const DEBUGBAR_PATHS = ['/_wdt', '/_profiler'];
+
     public function __construct(
         private readonly Environment $twig,
         private readonly bool $enabled,
@@ -23,6 +25,7 @@ class ComingSoonListener
         private readonly array $whitelistedIps,
         private readonly array $excludedRoutes,
         private readonly array $excludedPaths,
+        private readonly bool $debug = false,
     ) {
     }
 
@@ -57,6 +60,15 @@ class ComingSoonListener
         foreach ($this->excludedPaths as $excludedPath) {
             if (str_starts_with($pathInfo, $excludedPath)) {
                 return;
+            }
+        }
+
+        // In debug mode allow the Symfony web debug toolbar and profiler through.
+        if ($this->debug) {
+            foreach (self::DEBUGBAR_PATHS as $debugPath) {
+                if (str_starts_with($pathInfo, $debugPath)) {
+                    return;
+                }
             }
         }
 
