@@ -12,6 +12,8 @@ A Symfony bundle that lets you **enable or disable a Coming Soon page** for your
 - Excluded paths – allow specific URL path prefixes to pass through (e.g. `/admin`)
 - Symfony Web Debug Toolbar / Profiler (`/_wdt`, `/_profiler`) is automatically allowed through when `kernel.debug` is `true`
 
+![Alt text](docs/img/coming-soon.png?raw=true "Title")
+
 ## Installation
 
 ```bash
