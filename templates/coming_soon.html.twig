@@ -4,17 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coming Soon</title>
-    <link href="{{ asset('styles.css') }}">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .status-code {
+            font-size: 1rem;
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            color: #a0aec0;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #e2e8f0, #a0aec0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: #cbd5e0;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+            margin: 1.5rem auto;
+        }
+
+        .footer {
+            font-size: 0.875rem;
+            color: #718096;
+            margin-top: 3rem;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="status-code">HTTP {{ status_code }}</div>
-        <h1>Coming Soon</h1>
-        <div class="divider"></div>
-        <p>We&rsquo;re working hard to bring you something amazing.<br>Check back soon!</p>
-        <div class="footer">
-            &copy; {{ "now"|date("Y") }} &mdash; All rights reserved.
-        </div>
+<div class="container">
+    <div class="status-code">HTTP {{ status_code }}</div>
+    <h1>Coming Soon</h1>
+    <div class="divider"></div>
+    <p>We&rsquo;re working hard to bring you something amazing.<br>Check back soon!</p>
+    <div class="footer">
+        &copy; {{ "now"|date("Y") }} &mdash; All rights reserved.
     </div>
+</div>
 </body>
 </html>
