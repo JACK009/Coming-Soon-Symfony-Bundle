@@ -36,7 +36,7 @@ Create `config/packages/coming_soon.yaml`:
 ```yaml
 coming_soon:
     enabled: true                                      # set to false to disable
-    template: '@ComingSoon/coming_soon.html.twig'      # optional, override the template
+    template: '@ComingSoonBundle/coming_soon.html.twig'      # optional, override the template
     status_code: 503                                   # optional, default 503
     whitelisted_ips:                                   # optional
         - 127.0.0.1
