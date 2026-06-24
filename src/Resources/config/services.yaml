@@ -1,0 +1,12 @@
+services:
+    Jack009\ComingSoonBundle\EventListener\ComingSoonListener:
+        arguments:
+            $twig: '@twig'
+            $enabled: '%coming_soon.enabled%'
+            $template: '%coming_soon.template%'
+            $statusCode: '%coming_soon.status_code%'
+            $whitelistedIps: '%coming_soon.whitelisted_ips%'
+            $excludedRoutes: '%coming_soon.excluded_routes%'
+            $excludedPaths: '%coming_soon.excluded_paths%'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }
