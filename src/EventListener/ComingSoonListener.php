@@ -39,6 +39,9 @@ class ComingSoonListener
         $request = $event->getRequest();
 
         // Allow whitelisted IPs to pass through.
+        // getClientIp() respects Symfony's trusted-proxy configuration, so
+        // ensure your application's trusted_proxies setting is correct when
+        // running behind a load balancer or reverse proxy.
         if ($this->isIpWhitelisted($request->getClientIp())) {
             return;
         }
