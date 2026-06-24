@@ -1,3 +1,5 @@
+.idea
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -30,6 +32,7 @@
 !bin/console
 !bin/symfony_requirements
 /vendor/
+/composer.lock
 
 # Assets and user uploads
 /web/bundles/
@@ -38,6 +41,7 @@
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml
+/.phpunit.result.cache
 
 # Build data
 /build/
